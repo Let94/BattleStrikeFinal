@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.20)
+project(minecraft_dlss_native LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+if(NOT DEFINED STREAMLINE_ROOT)
+ message(FATAL_ERROR "STREAMLINE_ROOT must point to the official NVIDIA Streamline SDK")
+endif()
+add_library(minecraft_dlss_native SHARED src/dlss_bridge.cpp)
+target_include_directories(minecraft_dlss_native PRIVATE "${STREAMLINE_ROOT}/include" "${JAVA_HOME}/include" "${JAVA_HOME}/include/win32")
